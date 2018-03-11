@@ -42,7 +42,7 @@ if( !empty($_POST)){
                 exit();
             }
             else {
-                $_SESSION["login"] = "Incorrect credentials. Please try again.";
+                $_SESSION["login_error"] = "Invalid credentials. Please try again.";
                 header("Location: login.php", true);
                 exit();
             }
@@ -59,7 +59,12 @@ if( !empty($_POST)){
 ?>
 
 <?php include "templates/header.php"; ?>
-
+<?php
+if( count($_SESSION["login_error"]) > 0 ){
+    echo '<div class="bg-warning text-white text-center" style="padding-top:80px;"><h3>' . $_SESSION["login_error"] . '</h3></div>';
+    $_SESSION["login_error"] = "";
+}
+?>
 <div class="page text-center" style="padding-top:30px;">
     <div style="padding-top:100px;" class="display-1">Login</div>
 
