@@ -11,7 +11,7 @@ try {
     ]);
     // echo "connected to database";
 
-    $posts = $db->prepare("SELECT * FROM `metablog`.`posts` WHERE user_id = ? ORDER BY updated_at DESC");
+    $posts = $db->prepare("SELECT * FROM `metablog`.`posts` WHERE user_id = ? ORDER BY created_at DESC");
     if($posts->execute([$_SESSION["user_id"]])) {
         $result = $posts->fetchAll();
         $myposts = $result;

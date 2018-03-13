@@ -11,7 +11,7 @@ try {
     ]);
     // echo "connected to database";
 
-    $posts = $db->prepare("SELECT * FROM `metablog`.`posts` ORDER BY updated_at DESC");
+    $posts = $db->prepare("SELECT * FROM `metablog`.`posts` ORDER BY created_at DESC");
     if($posts->execute()) {
         $result = $posts->fetchAll();
         $allposts = $result;

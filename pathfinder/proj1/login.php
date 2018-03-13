@@ -76,7 +76,7 @@ if( count($_SESSION["login_error"]) > 0 ){
         <input type="text" name="password">
         <br>
         <br>
-        <input type="submit" name="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" name="submit" value="Submit">
         <br>
         
     </form>
