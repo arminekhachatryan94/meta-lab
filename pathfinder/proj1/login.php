@@ -59,10 +59,15 @@ if( !empty($_POST)){
 ?>
 
 <?php include "templates/header.php"; ?>
+
 <?php
 if( count($_SESSION["login_error"]) > 0 ){
     echo '<div class="bg-warning text-white text-center" style="padding-top:80px;"><h3>' . $_SESSION["login_error"] . '</h3></div>';
     $_SESSION["login_error"] = "";
+}
+if( count($_SESSION["register_success"]) > 0 ) {
+    echo '<div class="text-center text-white h4 bg-success" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["register_success"] . '</div>';
+    $_SESSION["register_success"] = "";
 }
 ?>
 <div class="page text-center" style="padding-top:30px;">

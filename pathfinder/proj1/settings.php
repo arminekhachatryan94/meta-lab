@@ -83,7 +83,7 @@ if( !empty($_POST) ) {
         }
         else{
             $_SESSION["settings_same"] = "You entered the same email.";
-            echo $_SESSION["settings_same"];
+            // echo $_SESSION["settings_same"];
             header("Location: settings.php", true);
             exit();
         }
@@ -95,7 +95,6 @@ if( !empty($_POST) ) {
 
 <?php include "templates/header.php"; ?>
 
-
 <?php
     if( count($_SESSION["settings_same"]) > 0 ) {
         echo '<div class="text-center text-white h4 bg-warning" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["settings_same"] . '</div>';
@@ -106,6 +105,7 @@ if( !empty($_POST) ) {
         $_SESSION["settings_changed"] = "";
     }
 ?>
+
 <div class="page text-center" style="padding-top:100px;">
     <div style="padding-top:30px;" class="display-1">Settings</div>
 
