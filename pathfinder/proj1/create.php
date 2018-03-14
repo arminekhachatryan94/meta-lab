@@ -14,7 +14,9 @@ if( !empty($_POST) ) {
             $stmt = $db->prepare("INSERT INTO posts (user_id, post_title, post_body) VALUES (?, ?, ?)");
 
             if($stmt->execute([$_SESSION["user_id"], $_POST["title"], $_POST["body"]])) {
-                echo "New record successfully added into the posts table";
+                // echo "New record successfully added into the posts table";
+                $_SESSION["newpost"] = "New post was successfully published.";
+                header("Location: posts.php", true);
             } else{
                 echo "couldn't add into posts table";
             }

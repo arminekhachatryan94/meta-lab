@@ -78,9 +78,9 @@ if( !empty($_POST)){
 <?php include "templates/header.php"; ?>
 
 <?php
-    if( count($_SESSION["register_errors"]) > 0 ) {
+    if( isset($_SESSION["register_errors"]) ) {
         echo '<div class="text-center text-white h4 bg-warning" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["register_errors"] . '</div>';
-        $_SESSION["register_errors"] = "";
+        unset($_SESSION["register_errors"]);
     }
 ?>
 <div class="page text-center" style="padding-top:30px;">

@@ -30,6 +30,12 @@ catch(PDOException $e) {
 
 <?php include "templates/header.php"; ?>
 
+<?php
+    if( isset($_SESSION["newpost"]) ) {
+        echo '<div class="text-center text-white h4 bg-success" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["newpost"] . '</div>';
+        unset($_SESSION["newpost"]);
+    }?>
+
 <div class="page text-center" style="padding-top:30px;">
     <div style="padding-top:100px;" class="display-1">All Posts</div>
 

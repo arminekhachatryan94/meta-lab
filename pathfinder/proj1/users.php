@@ -49,14 +49,16 @@ if( !empty($_POST) ) {
 
 <?php include "templates/header.php"; ?>
 
+<?php
+    if( isset($_SESSION["role_change"]) ){
+        echo '<div style="margin:50px 100px 0px 100px;" class="bg-success text-white h4">' . $_SESSION["role_change"] . "</div>";
+        unset($_SESSION["role_change"]);
+    }
+?>
+
 <div class="page text-center" style="padding-top:30px;">
     <div style="padding-top:100px; padding-bottom:50px;" class="display-1">All Users</div>
-    <?php
-        if( count($_SESSION["role_change"]) > 0 ){
-            echo '<div style="margin:50px 100px 0px 100px;" class="bg-success text-white h4">' . $_SESSION["role_change"] . "</div>";
-            $_SESSION["role_change"] = "";
-        }
-    ?>
+    
     <div class="h4 text-left" style="background-color:lightblue; padding:20px; margin:0px 100px 50px 100px;">
             <?php
             for( $i = 0; $i < count($users); $i++ ) {

@@ -30,12 +30,12 @@ if( !empty($_POST) ) {
                             exit();
                         }
                         else{
-                            $_SESSION["settings_changed"] = "Couldn't change username.";
+                            $_SESSION["settings_error"] = "Couldn't change username.";
                             header("Location: settings.php", true);
                             exit();
                         }
                     } else{
-                        $_SESSION["settings_changed"] = "Sorry, username is already taken.";
+                        $_SESSION["settings_error"] = "Sorry, username is already taken.";
                         header("Location: settings.php", true);
                         exit();
                     }
@@ -51,39 +51,58 @@ if( !empty($_POST) ) {
             }
         }
         else{
-            $_SESSION["settings_same"] = "You entered the same username.";
+            $_SESSION["settings_error"] = "You entered the same username.";
             header("Location: settings.php", true);
             exit();
         }
     }
     else if( isset($_POST["email"]) ){
-        // changed email
         if( $_POST["email"] != $_SESSION["email"] ){
-
-                    $_SESSION["email"] = $_POST["email"];
-
-                    try {
-                        $db = new PDO($conn, "root", "", [
-                            PDO::ATTR_PERSISTENT => true
-                        ]);
-                        
-                        $stmt1 = $db->prepare("UPDATE users SET email = ? WHERE user_id = ?");
+            // connect to db
+            try {
+                $db = new PDO($conn, "root", "", [
+                    PDO::ATTR_PERSISTENT => true
+                ]);
+                
+                // retrieve records from users table
+                $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+                if($stmt->execute([$_POST["email"]])) {
+                    $result = $stmt->fetchAll();
                     
+                    // check if email is taken
+                    if( (count($result) == 0) ) {
+                        $stmt1 = $db->prepare("UPDATE users SET email = ? WHERE user_id = ?");
+                        
+                        // change email
                         if($stmt1->execute([$_POST["email"], $_SESSION["user_id"]])) {
                             $_SESSION["settings_changed"] = "Successfully changed email.";
-                            echo $_SESSION["settings_changed"];
+                            $_SESSION["email"] = $_POST["email"];
                             header("Location: settings.php", true);
                             exit();
                         }
+                        else{
+                            $_SESSION["settings_error"] = "Couldn't change email.";
+                            header("Location: settings.php", true);
+                            exit();
+                        }
+                    } else{
+                        $_SESSION["settings_error"] = "Sorry, email is already taken.";
+                        header("Location: settings.php", true);
+                        exit();
                     }
-                    catch(PDOException $e) {
-                        echo "not connected to database";
-                        die("Could not connect: " . $e->getMessage());
-                    }
+                }
+                else {
+                    echo "couldn't retrieve records";
+                }
+
+            }
+            catch(PDOException $e) {
+                echo "not connected to database";
+                die("Could not connect: " . $e->getMessage());
+            }
         }
         else{
-            $_SESSION["settings_same"] = "You entered the same email.";
-            // echo $_SESSION["settings_same"];
+            $_SESSION["settings_error"] = "You entered the same email.";
             header("Location: settings.php", true);
             exit();
         }
@@ -96,13 +115,13 @@ if( !empty($_POST) ) {
 <?php include "templates/header.php"; ?>
 
 <?php
-    if( count($_SESSION["settings_same"]) > 0 ) {
-        echo '<div class="text-center text-white h4 bg-warning" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["settings_same"] . '</div>';
-        $_SESSION["settings_same"] = "";
+    if( isset($_SESSION["settings_error"]) ) {
+        echo '<div class="text-center text-white h4 bg-warning" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["settings_error"] . '</div>';
+        unset($_SESSION["settings_error"]);
     }
-    else if( count($_SESSION["settings_changed"]) > 0 ) {
+    else if( isset($_SESSION["settings_changed"]) ) {
         echo '<div class="text-center text-white h4 bg-success" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["settings_changed"] . '</div>';
-        $_SESSION["settings_changed"] = "";
+        unset($_SESSION["settings_changed"]);
     }
 ?>
 
