@@ -38,22 +38,22 @@ if( !empty($_POST) ) {
     <div style="padding-top:100px;" class="display-1">Create a New Post</div>
     
     <!-- posts container -->
-    <div style="padding: 30px 200px 50px 200px">
+    <div style="padding: 30px 200px 50px 200px;">
         <!-- post -->
-        <form method="POST" action="create.php" style="margin:30px;">
+        <form method="POST" action="create.php" style="margin:30px; background-color:lightblue; border: 2px #006598 solid;">
             <!-- title -->
             <div class="h3 text-white text-center" style="background-color:#006598; padding:7px; margin:0px">
                 <div>Title:</div>
                 <input name="title" style="color:black;" type="text">
             </div>
             <!-- body -->
-            <div class="h3 text-center" style="background-color:lightblue; padding:20px; margin:0px;">
+            <div class="h3 text-center" style="padding:20px; margin:0px;">
                 <div style="padding-bottom:10px; color:#006598;">
                     <div>Body:</div>
                     <textarea name="body" class="h5" style="color:black; width:90%; height:100px;"></textarea>
                 </div>
             </div>
-            <div style="background-color:lightblue;">
+            <div style="padding-bottom:30px;">
                 <input class="btn btn-primary" type="submit" name="submit" value="Submit">
             </div>
         </form>
