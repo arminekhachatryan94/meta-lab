@@ -40,8 +40,24 @@ if( !empty($_POST)){
             $stmt2 = $db->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)");
 
             if($stmt2->execute([$_POST["first_name"], $_POST["last_name"], $_POST["username"], $_POST["email"], $_POST["password"]])) {
-                $_SESSION["register_success"] = "Successfully created user. Please login.";
-                header("Location: login.php", true);
+
+                // get user id assigned
+                $stmt3 = $db->prepare("SELECT * FROM users WHERE username = ?");
+                if($stmt3->execute([$_POST["username"]])) {
+                    $result = $stmt3->fetchAll();
+                    $new_id = $result[0]["user_id"];
+
+                    // add role as user
+                    $stmt4 = $db->prepare("INSERT INTO user_roles (user_id, role) VALUES (?, ?)");
+
+                    // insert the new record into the drinks table using the data array
+                    if($stmt4->execute([$new_id, "user"])) {
+                        $_SESSION["register_success"] = "Successfully created user. Please login.";
+                        header("Location: login.php", true);
+                    }
+
+                }
+
             }
             else {
                 // Unable to create user
