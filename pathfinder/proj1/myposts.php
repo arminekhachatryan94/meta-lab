@@ -174,6 +174,7 @@ if( !empty($_POST) ){
                                         }
                                         echo '</div>';
                                     }
+                                    
                                 }
                             }
                         }
@@ -204,7 +205,7 @@ if( !empty($_POST) ){
             document.getElementById(id).style.display = "none";
         }
     }
-    
+
 </script>
 
 <?php include "templates/footer.php"; ?>
