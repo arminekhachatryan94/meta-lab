@@ -26,8 +26,8 @@ catch(PDOException $e) {
 }
 
 if( !empty($_POST) ){
-    if( $_POST["crud"] == "delete" ){
-        if( $_POST["user_id"] == $_SESSION["user_id"] ){
+    if( $_POST["typeRequest"] == "deletePost" ){
+        if( ($_POST["user_id"] == $_SESSION["user_id"]) || ($_SESSION["role"] == 'admin') ){
             $db = new PDO($conn, "root", "", [
                 PDO::ATTR_PERSISTENT => true
             ]);
@@ -86,12 +86,12 @@ if( !empty($_POST) ){
                 echo $date;
                 ?></i></div>
                 <div style="padding-bottom:30px;">
-                    <a href="#" class="h4 text-primary" style="padding-left:10px; display:inline; float:right;">Edit</a>
+                    <!--a href="#" class="h4 text-primary" style="padding-left:10px; display:inline; float:right;">Edit</a-->
                     <form method="POST" action="myposts.php">
                         <a href="" name="delete" onclick="document.forms[<?php echo $i; ?>].submit();return false;" class="h4 text-primary" style="display:inline; float:right;">Delete</a> 
                         <input type="hidden" name="post_id" value="<?php echo $myposts[$i]["post_id"]; ?>">
                         <input type="hidden" name="user_id" value="<?php echo $myposts[$i]["user_id"]; ?>">
-                        <input type="hidden" name="crud" value="delete">
+                        <input type="hidden" name="typeRequest" value="deletePost">
                     </form>
 
                     <a onclick="showComments(<?php echo $myposts[$i]["post_id"]; ?>)" class="h4 text-primary" style="display:inline; float:left;"><u>Comments</u></a>
@@ -204,14 +204,7 @@ if( !empty($_POST) ){
             document.getElementById(id).style.display = "none";
         }
     }
-
-    function editPost(id) {
-        ;
-    }
-
-    function editComment(id) {
-
-    }
+    
 </script>
 
 <?php include "templates/footer.php"; ?>
