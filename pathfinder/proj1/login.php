@@ -75,10 +75,10 @@ if( isset($_SESSION["register_success"]) ) {
 
     <form method="POST" action="login.php" style="padding-top:50px;">
         <div>Username:</div>
-        <input type="text" name="username"><br>
+        <input type="text" name="username" required><br>
         <br>
         <div>Password:<br></div>
-        <input type="text" name="password">
+        <input type="password" name="password" required>
         <br>
         <br>
         <input class="btn btn-primary" type="submit" name="submit" value="Submit">

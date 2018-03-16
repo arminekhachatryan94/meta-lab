@@ -104,19 +104,19 @@ if( !empty($_POST)){
 
     <form method="POST" action="register.php" style="padding-top:50px;">
         <div>First Name:</div>
-        <input type="text" name="first_name"><br>
+        <input type="text" name="first_name" required><br>
         <br>
         <div>Last Name:</div>
-        <input type="text" name="last_name"><br>
+        <input type="text" name="last_name" required><br>
         <br>
         <div>Username:</div>
-        <input type="text" name="username"><br>
+        <input type="text" name="username" required><br>
         <br>
         <div>Email:</div>
-        <input type="email" name="email"><br>
+        <input type="email" name="email" required><br>
         <br>
         <div>Password:<br></div>
-        <input type="text" name="password">
+        <input type="text" name="password" required>
         <br>
         <br>
         <input class="btn btn-primary" type="submit" name="submit" value="Submit">

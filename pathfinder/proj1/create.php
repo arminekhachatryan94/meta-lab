@@ -44,13 +44,13 @@ if( !empty($_POST) ) {
             <!-- title -->
             <div class="h3 text-white text-center" style="background-color:#006598; padding:7px; margin:0px">
                 <div>Title:</div>
-                <input name="title" style="color:black;" type="text">
+                <input name="title" style="color:black;" type="text" required>
             </div>
             <!-- body -->
             <div class="h3 text-center" style="padding:20px; margin:0px;">
                 <div style="padding-bottom:10px; color:#006598;">
                     <div>Body:</div>
-                    <textarea name="body" class="h5" style="color:black; width:90%; height:100px;"></textarea>
+                    <textarea name="body" class="h5" style="color:black; width:90%; height:100px;" required></textarea>
                 </div>
             </div>
             <div style="padding-bottom:30px;">

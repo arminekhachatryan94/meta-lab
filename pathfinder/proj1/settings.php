@@ -143,7 +143,7 @@ if( !empty($_POST) ) {
         <div style="padding-top:30px;">
             <div  style="color:#006598;" class="text-center"><b>Username:</b></div>
             <form method="POST" action="settings.php">
-                <input type="text" name="username" value=<?php echo '"' . $_SESSION["username"] . '"'; ?>>
+                <input type="text" name="username" value=<?php echo '"' . $_SESSION["username"] . '"'; ?> required>
                 <input class="btn btn-primary" name="submit" type="submit">
             </form>
         </div>
@@ -151,7 +151,7 @@ if( !empty($_POST) ) {
         <div style="padding-top:30px;">
             <div  style="color:#006598;" class="text-center"><b>Email:</b></div>
             <form method="POST" action="settings.php">
-                <input type="email" name="email" value=<?php echo '"' . $_SESSION["email"] . '"'; ?>>
+                <input type="email" name="email" value=<?php echo '"' . $_SESSION["email"] . '"'; ?> required>
                 <input class="btn btn-primary" name="submit" type="submit">
             </form>
         </div>

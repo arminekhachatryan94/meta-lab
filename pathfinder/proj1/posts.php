@@ -56,6 +56,27 @@ if( !empty($_POST) ){
             header("Location: posts.php", true);
         }
     }
+    else if( $_POST["typeRequest"] == "deleteComment" ){
+        /*
+        echo "commenter_id" . $_POST["commenter_id"] . '<br>';
+        echo "comment_id" . $_POST["comment_id"] . '<br>';
+        */
+        
+        if( ($_POST["commenter_id"] == $_SESSION["user_id"]) || ($_SESSION["role"] == 'admin') ){
+            $db = new PDO($conn, "root", "", [
+                PDO::ATTR_PERSISTENT => true
+            ]);
+            
+            $stmt = $db->prepare("DELETE FROM comments WHERE comment_id = ?");
+
+            // delete post
+            if($stmt->execute([$_POST["comment_id"]])) {
+                header("Location: posts.php", true);
+                $_SESSION["post_deleted"] = "Comment was successfully deleted.";
+                $_SESSION["delete"] = 2;
+            }
+        }
+    }
 }
 
 ?>
@@ -187,7 +208,7 @@ if( !empty($_POST) ){
                                         if( $j + 1 < count($result_comments) ){
                                             echo '">';
                                             echo '<div class="row col-md-12">';
-                                                echo '<div class="col-md-9">';
+                                                echo '<div class="col-md-8">';
                                                     echo '<div class="text-left">';
                                                         echo '<b style="color:#006598;">' . $username . '</b>';
                                                     echo '</div>';
@@ -195,9 +216,14 @@ if( !empty($_POST) ){
                                                         echo $result_comments[$j]["body"];
                                                     echo '</div>';
                                                 echo '</div>';
-                                                echo '<div class="col-md-3 text-right" style="font-size:12px; width:100%">';
+                                                echo '<div class="col-md-4 text-right" style="font-size:12px; width:100%">';
                                                     if( ($_SESSION["user_id"] == $result_comments[$j]["commenter_id"]) || ($_SESSION["role"] == 'admin') ){
-                                                        echo '<a href="#">delete</a>';
+                                                        echo '<form method="POST" action="posts.php">';
+                                                            echo '<a href="" onclick="document.forms[' .  $j . '].submit();return false;">Delete</a>';
+                                                            echo '<input type="hidden" name="commenter_id" value="' . $result_comments[$j]["commenter_id"] . '">';
+                                                            echo '<input type="hidden" name="comment_id" value="' . $result_comments[$j]["comment_id"] . '">';
+                                                            echo '<input type="hidden" name="typeRequest" value="deleteComment">';
+                                                        echo '</form>';
                                                     }
                                                     echo '<div>' . $comment_date . '</div>';
                                                 echo '</div>';
@@ -206,7 +232,7 @@ if( !empty($_POST) ){
                                         } else {
                                             echo 'padding-bottom:20px;">';
                                             echo '<div class="row col-md-12">';
-                                                echo '<div class="col-md-9">';
+                                                echo '<div class="col-md-8">';
                                                     echo '<div class="text-left">';
                                                         echo '<b style="color:#006598;">' . $username . '</b>';
                                                     echo '</div>';
@@ -214,9 +240,14 @@ if( !empty($_POST) ){
                                                         echo $result_comments[$j]["body"];
                                                     echo '</div>';
                                                 echo '</div>';
-                                                echo '<div class="col-md-3 text-right" style="font-size:12px; width:100%">';
+                                                echo '<div class="col-md-4 text-right" style="font-size:12px; width:100%">';
                                                     if( ($_SESSION["user_id"] == $result_comments[$j]["commenter_id"]) || ($_SESSION["role"] == 'admin') ){
-                                                        echo '<a href="#">delete</a>';
+                                                        echo '<form method="POST" action="posts.php">';
+                                                            echo '<a href="" onclick="document.forms[' . (count($allposts) + $j) . '].submit();return false;">delete</a>';
+                                                            echo '<input type="hidden" name="commenter_id" value="' . $result_comments[$j]["commenter_id"] . '">';
+                                                            echo '<input type="hidden" name="comment_id" value="' . $result_comments[$j]["comment_id"] . '">';
+                                                            echo '<input type="hidden" name="typeRequest" value="deleteComment">';
+                                                        echo '</form>';
                                                     }
                                                     echo '<div>' . $comment_date . '</div>';
                                                 echo '</div>';
@@ -236,14 +267,12 @@ if( !empty($_POST) ){
                 <div class="text-center" style="background-color:#c4e2ed; height:125px; padding-top:20px;">
                     <div style="color:#006598; padding-bottom:10px; font-size:17px;"><b>New comment</b></div>
                     <div>
-                    <form method="POST" action="posts.php" class="row col-xs-12">
-                        <div class="col-xs-9 text-right">
-                            <input type="text" name="comment" style="width:80%; height:50px;">
+                    <form method="POST" action="posts.php" class="row col-md-12">
+                        <div class="col-md-8 text-right">
+                            <input type="text" name="comment" style="width:80%; height:50px;" required>
                         </div>
-                        <input type="hidden" name="post_id" value="<?php echo $allposts[$i]["post_id"]; ?>">
-                        <input type="hidden" name="typeRequest" value="newComment">
-                        <div class="col-xs-3 text-left">
-                        <input type="submit" value="Post Comment" class="btn btn-primary" style="width:70%; height:50px;">
+                        <div class="col-md-3 text-left">
+                            <input type="submit" value="Post Comment" class="btn btn-primary" style="width:70%; height:50px;">
                         </div>
                     </form>
                     </div>
