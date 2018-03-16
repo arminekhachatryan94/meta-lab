@@ -42,7 +42,7 @@ if( !empty($_POST) ){
             }
         }
     }
-    else if( $_POST["typeRequest"] == "newComment" ){
+    else if( $_POST["typeRequest"] == "newComment" ){        
         $db = new PDO($conn, "root", "", [
             PDO::ATTR_PERSISTENT => true
         ]);
@@ -76,6 +76,7 @@ if( !empty($_POST) ){
                 $_SESSION["delete"] = 2;
             }
         }
+        
     }
 }
 
@@ -265,9 +266,11 @@ if( !empty($_POST) ){
                     ?>
                 </div>
                 <div class="text-center" style="background-color:#c4e2ed; height:125px; padding-top:20px;">
-                    <div style="color:#006598; padding-bottom:10px; font-size:17px;"><b>New comment</b></div>
+                    <div style="color:#006598; padding-bottom:10px; font-size:17px;"><b>New Comment</b></div>
                     <div>
                     <form method="POST" action="posts.php" class="row col-md-12">
+                        <input type="hidden" name="typeRequest" value="newComment">
+                        <input type="hidden" name="post_id" value="<?php echo $allposts[$i]["post_id"]; ?>">
                         <div class="col-md-8 text-right">
                             <input type="text" name="comment" style="width:80%; height:50px;" required>
                         </div>
