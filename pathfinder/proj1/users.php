@@ -51,7 +51,7 @@ if( !empty($_POST) ) {
 
 <?php
     if( isset($_SESSION["role_change"]) ){
-        echo '<div style="margin:50px 100px 0px 100px;" class="bg-success text-white h4">' . $_SESSION["role_change"] . "</div>";
+        echo '<div style="padding:80px 100px 0px 100px;" class="bg-success text-white text-center h4">' . $_SESSION["role_change"] . "</div>";
         unset($_SESSION["role_change"]);
     }
 ?>
@@ -60,6 +60,15 @@ if( !empty($_POST) ) {
     <div style="padding-top:100px; padding-bottom:50px;" class="display-1">All Users</div>
     
     <div class="h4 text-left" style="background-color:lightblue; padding:20px; margin:0px 100px 50px 100px;">
+        <div class="row text-center text-primary" style="padding:10px;">
+            <div class="col-xs-12">
+                    <div class="col-xs-2">First Name</div>
+                    <div class="col-xs-2">Last Name</div>
+                    <div class="col-xs-2">Username</div>
+                    <div style="display:hidden" class="col-xs-6"></div>
+            </div>
+        </div>
+        <hr style="border:0.5px solid;" class="text-primary">
             <?php
             for( $i = 0; $i < count($users); $i++ ) {
             ?>

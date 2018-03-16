@@ -3,7 +3,7 @@
 session_start();
 
 if( !empty($_POST)){
-    
+    if( $_POST["password"] == $_POST["confirm_password"] ){
     $conn = "mysql:host=127.0.0.1;dbname=metablog";
     try {
         $db = new PDO($conn, "root", "", [
@@ -36,10 +36,13 @@ if( !empty($_POST)){
         }
 
         if( $email_free && $username_free ){
+
+            $hashed_pwd = password_hash($_POST["password"], PASSWORD_BCRYPT);
+
             // create new user
             $stmt2 = $db->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)");
 
-            if($stmt2->execute([$_POST["first_name"], $_POST["last_name"], $_POST["username"], $_POST["email"], $_POST["password"]])) {
+            if($stmt2->execute([$_POST["first_name"], $_POST["last_name"], $_POST["username"], $_POST["email"], $hashed_pwd])) {
 
                 // get user id assigned
                 $stmt3 = $db->prepare("SELECT * FROM users WHERE username = ?");
@@ -62,23 +65,28 @@ if( !empty($_POST)){
             else {
                 // Unable to create user
                 $_SESSION["register_errors"] = "Unable to register.";
+                $_SESSION["register"] = 2;
                 header("Location: register.php", true);
             }
         } else if( !$email_free && !$username_free ) {
             // both email & username are taken
             $_SESSION["register_errors"] = "Username and email are already taken.";
+            $_SESSION["register"] = 2;
             header("Location: register.php", true);
         } else if( $email_free && !$username_free ){
             // email is free but username is taken
             $_SESSION["register_errors"] = "Username is already taken.";
+            $_SESSION["register"] = 2;
             header("Location: register.php", true);
         } else if( $username_free && !$email_free ){
             // username is free but email is taken
             $_SESSION["register_errors"] = "Email is already taken.";
+            $_SESSION["register"] = 2;
             header("Location: register.php", true);
         } else {
             // Unable to create user
             $_SESSION["register_errors"] = "Unable to register.";
+            $_SESSION["register"] = 2;
             header("Location: register.php", true);
         }
 
@@ -86,6 +94,12 @@ if( !empty($_POST)){
     catch(PDOException $e) {
         echo "not connected to database";
         die("Could not connect: " . $e->getMessage());
+    }
+    }
+    else {
+        $_SESSION["register_errors"] = "Passwords do not match.";
+        $_SESSION["register"] = 2;
+        header("Location: register.php", true);
     }
 
 }
@@ -96,7 +110,11 @@ if( !empty($_POST)){
 <?php
     if( isset($_SESSION["register_errors"]) ) {
         echo '<div class="text-center text-white h4 bg-warning" style="padding-top:80px; display:inline-block; width:100%;">' . $_SESSION["register_errors"] . '</div>';
-        unset($_SESSION["register_errors"]);
+        $_SESSION["register"]--;
+        if( $_SESSION["register"] == 0 ){
+            unset($_SESSION["register_errors"]);
+            unset($_SESSION["register"]);
+        }
     }
 ?>
 <div class="page text-center" style="padding-top:30px;">
@@ -116,10 +134,16 @@ if( !empty($_POST)){
         <input type="email" name="email" required><br>
         <br>
         <div>Password:<br></div>
-        <input type="text" name="password" required>
+        <input type="password" name="password" required>
+        <br>
+        <br>
+        <div>Confirm Password:<br></div>
+        <input type="password" name="confirm_password" required>
         <br>
         <br>
         <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+        <br>
+        <br>
         <br>
         
     </form>

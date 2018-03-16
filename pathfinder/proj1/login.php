@@ -19,7 +19,7 @@ if( !empty($_POST)){
             // var_dump($result);
 
             // unique usernames
-            if( count($result) == 1 && $username == $result[0]["username"] && $password == $result[0]["password"] ) {
+            if( count($result) == 1 && $username == $result[0]["username"] && password_verify($password, $result[0]["password"]) ) {
                 // echo "successful login";
                 $_SESSION["username"] = $username;
                 $_SESSION["email"] = $result[0]["email"];
