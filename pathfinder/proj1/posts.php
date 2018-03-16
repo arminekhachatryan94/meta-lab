@@ -110,7 +110,7 @@ if( !empty($_POST) ){
                         </form>
                     <?php } ?>
 
-                    <a onclick="comments(<?php echo $allposts[$i]["post_id"]; ?>)" class="h4 text-primary" style="display:inline; float:left;"><u>Comments</u></a>
+                    <a onclick="showComments(<?php echo $allposts[$i]["post_id"]; ?>)" class="h4 text-primary" style="display:inline; float:left;"><u>Comments</u></a>
                 </div>
             </div>
             <!-- comments -->
@@ -210,9 +210,8 @@ if( !empty($_POST) ){
     </div>
 </div>
 
-
 <script type="text/javascript">
-    function comments(id) {
+    function showComments(id) {
         var display = document.getElementById(id).style.display;
         if( display == "none" ){
             document.getElementById(id).style.display = "inline-block";
