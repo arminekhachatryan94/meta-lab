@@ -2,6 +2,8 @@
 
 session_start();
 
+if( !isset($_SESSION["user_id"]) ){
+
 if( !empty($_POST)){
     $username=$_POST["username"];
     $password=$_POST["password"];
@@ -88,3 +90,10 @@ if( isset($_SESSION["register_success"]) ) {
 </div>
 
 <?php include "templates/footer.php"; ?>
+
+<?php
+}
+else {
+    header("Location: posts.php", true);
+}
+?>

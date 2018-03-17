@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+if( !isset($_SESSION["user_id"]) ){
+?>
+
 <?php include "templates/header.php"; ?>
 
 <div class="page text-center" style="padding-top:30px;">
@@ -10,3 +17,9 @@
 <!-- add remaining scripts -->
 <?php include "templates/footer.php"; ?>
 
+<?php
+}
+else {
+    header("Location: posts.php", true);
+}
+?>

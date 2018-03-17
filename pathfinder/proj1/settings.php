@@ -2,6 +2,8 @@
 
 session_start();
 
+if( isset($_SESSION["user_id"]) ){
+
 if( !empty($_POST) ) {
     $conn = "mysql:host=127.0.0.1;dbname=metablog";
 
@@ -159,3 +161,10 @@ if( !empty($_POST) ) {
 </div>
 
 <?php include "templates/footer.php"; ?>
+
+<?php
+}
+else {
+    header("Location: index.php", true);
+}
+?>

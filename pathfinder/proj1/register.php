@@ -2,6 +2,8 @@
 
 session_start();
 
+if( !isset($_SESSION["user_id"]) ){
+
 if( !empty($_POST)){
     if( $_POST["password"] == $_POST["confirm_password"] ){
     $conn = "mysql:host=127.0.0.1;dbname=metablog";
@@ -150,3 +152,10 @@ if( !empty($_POST)){
 </div>
 
 <?php include "templates/footer.php"; ?>
+
+<?php
+}
+else {
+    header("Location: posts.php", true);
+}
+?>

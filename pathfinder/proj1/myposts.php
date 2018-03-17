@@ -2,6 +2,7 @@
 
 session_start();
 
+if( isset($_SESSION["user_id"]) ){
 $myposts = array();
 
 $conn = "mysql:host=127.0.0.1;dbname=metablog";
@@ -289,3 +290,10 @@ if( !empty($_POST) ){
 </script>
 
 <?php include "templates/footer.php"; ?>
+
+<?php
+}
+else {
+    header("Location: index.php", true);
+}
+?>
