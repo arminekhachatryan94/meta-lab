@@ -193,8 +193,8 @@ if( !empty($_POST) ){
                                         }
                                         if( $j + 1 < count($result_comments) ){
                                             echo '">';
-                                            echo '<div class="row col-md-12">';
-                                                echo '<div class="col-md-8">';
+                                            echo '<div class="row col-xs-12">';
+                                                echo '<div class="col-xs-8">';
                                                     echo '<div class="text-left">';
                                                         echo '<b style="color:#006598;">' . $username . '</b>';
                                                     echo '</div>';
@@ -202,7 +202,7 @@ if( !empty($_POST) ){
                                                         echo $result_comments[$j]["body"];
                                                     echo '</div>';
                                                 echo '</div>';
-                                                echo '<div class="col-md-4 text-right" style="font-size:12px; width:100%">';
+                                                echo '<div class="col-xs-4 text-right" style="font-size:12px; width:100%">';
                                                     if( ($_SESSION["user_id"] == $result_comments[$j]["commenter_id"]) || ($_SESSION["role"] == 'admin') ){
                                                         echo '<form method="POST" action="myposts.php">';
                                                             echo '<a href="" onclick="document.forms[' .  $j . '].submit();return false;">Delete</a>';
@@ -217,8 +217,8 @@ if( !empty($_POST) ){
                                             /*echo '<hr style="margin:0px; border-color:black;">';*/
                                         } else {
                                             echo 'padding-bottom:20px;">';
-                                            echo '<div class="row col-md-12">';
-                                                echo '<div class="col-md-8">';
+                                            echo '<div class="row col-xs-12">';
+                                                echo '<div class="col-xs-8">';
                                                     echo '<div class="text-left">';
                                                         echo '<b style="color:#006598;">' . $username . '</b>';
                                                     echo '</div>';
@@ -226,7 +226,7 @@ if( !empty($_POST) ){
                                                         echo $result_comments[$j]["body"];
                                                     echo '</div>';
                                                 echo '</div>';
-                                                echo '<div class="col-md-4 text-right" style="font-size:12px; width:100%">';
+                                                echo '<div class="col-xs-4 text-right" style="font-size:12px; width:100%">';
                                                     if( ($_SESSION["user_id"] == $result_comments[$j]["commenter_id"]) || ($_SESSION["role"] == 'admin') ){
                                                         echo '<form method="POST" action="myposts.php">';
                                                             echo '<a href="" onclick="document.forms[' . (count($myposts) + $j) . '].submit();return false;">delete</a>';
