@@ -19,13 +19,8 @@ class UsersTableSeeder extends Seeder
           'email' => 'armine@my.csun.edu',
           'username' => 'armine',
           'password' => bcrypt('secret'),
+          'role' => 'admin',
           'remember_token' => str_random(10),
         ]);
-
-        DB::table('user_roles')->insert([
-            'user_id'=> 1,
-            'role'=> 'admin'
-        ]);
-
     }
 }
