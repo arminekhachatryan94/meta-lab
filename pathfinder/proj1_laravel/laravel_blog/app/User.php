@@ -32,4 +32,8 @@ class User extends Authenticatable
         return $this;
     }
     */
+
+    public function username() {
+        return $this->username;
+    }
 }
