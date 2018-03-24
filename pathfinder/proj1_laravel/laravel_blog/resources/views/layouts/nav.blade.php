@@ -4,6 +4,12 @@
             <a class="navbar-brand cursive" href="{{ url('/') }}">
                 <b class="h3">MetaBlog</b>
             </a>
+            @guest
+            @else
+            <div style="display:inline-block">
+                <li style="list-style-type: none;"><a class="text-black" href="/posts/create">Create</a></li>
+            </div>
+            @endguest
         </div>
 
         <div class="float-right collapse navbar-collapse" id="navbarSupportedContent">
