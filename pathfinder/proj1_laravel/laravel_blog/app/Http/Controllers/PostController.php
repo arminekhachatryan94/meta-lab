@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class PostController extends Controller
 {
@@ -23,8 +24,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $posts = Post::all()->sortByDesc("created_at");;
+        $posts = Post::all()->sortByDesc("created_at");
         return view('posts.index', compact('posts'));
+    }
+
+    public function myposts(){
+        $posts = Post::all()->where('user_id', auth()->id())->sortByDesc("created_at");
+        return view('posts.myposts', compact('posts'));
     }
 
     public function show( Post $post ){

@@ -7,6 +7,12 @@
             @guest
             @else
             <div style="display:inline-block">
+                <li style="list-style-type: none;"><a class="text-black" href="/posts">Posts</a></li>
+            </div>
+            <div style="display:inline-block">
+                <li style="list-style-type: none;"><a class="text-black" href="/myposts">My Posts</a></li>
+            </div>
+            <div style="display:inline-block">
                 <li style="list-style-type: none;"><a class="text-black" href="/posts/create">Create</a></li>
             </div>
             @endguest
