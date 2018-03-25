@@ -14,7 +14,18 @@
             {{ $post->body }}
         </div>
         <div style="padding-top:20px;">
-            <b>Comments</b>
+            @if( auth()->id() == $post->user_id )
+            <div class="text-right">
+                <form method="POST" action="/posts/{{$post->id}}">
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+            @endif
+            <div class="text-left">
+                <b>Comments</b>
+            </div>
             @foreach ($post->comments as $comment)
                 <div>{{ $comment->body}}</div>
             @endforeach
