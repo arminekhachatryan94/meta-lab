@@ -8,11 +8,14 @@ use App\User;
 
 class Comment extends Model
 {
-    public function post(){
+
+  protected $fillable = ['post_id', 'body', 'user_id'];
+
+  public function post(){
 		return $this->belongsTo(Post::class);
-    }
+  }
     
-    public function user(){
+  public function user(){
 		return $this->belongsTo(User::class);
 	}
 }

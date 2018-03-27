@@ -8,3 +8,7 @@
     @include ('comments.comment')
 
 @endforeach
+
+<div>
+    @include ('comments.create')
+</div>
