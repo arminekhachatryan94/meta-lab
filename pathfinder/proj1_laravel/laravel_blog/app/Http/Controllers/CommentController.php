@@ -22,4 +22,17 @@ class CommentController extends Controller
         session()->flash('message', 'New comment has been published.');
     	return back();
     }
+
+    public function delete( $id ){
+        $comment = Comment::find($id);
+        if ( !$comment ){
+            return back()->withErrors([
+    			'error' => "Couldn't delete comment."
+    		]);
+        } else {
+            $comment->delete();
+            session()->flash('message', 'Comment was successfully deleted');
+            return back();
+        }
+    }
 }

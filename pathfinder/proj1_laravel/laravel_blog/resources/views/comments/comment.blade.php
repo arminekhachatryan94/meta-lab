@@ -12,5 +12,14 @@
     <div class="col">
         {{ $comment->body}}
     </div>
+    @if( $comment->user_id == auth()->id() )
+        <div class="text-right">
+            <form method="POST" action="/comments/{{$comment->id}}">
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    @endif
     <br>
 </div>
