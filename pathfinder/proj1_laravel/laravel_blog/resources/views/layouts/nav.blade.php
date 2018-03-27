@@ -31,6 +31,9 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="text-black dropdown-item" href="/settings">
+                                        Settings
+                                    </a>
                                     <a class="text-black dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

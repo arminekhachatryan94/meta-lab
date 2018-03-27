@@ -23,5 +23,8 @@ Route::get('/myposts', 'PostController@myposts')->name('myposts');
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts', 'PostController@store');
 Route::get('/posts/{post}', 'PostController@show');
-Route::delete('/posts/{post}', 'PostController@delete'); // edit post
+Route::delete('/posts/{post}', 'PostController@delete'); // delete post
 
+Route::get('/settings', 'SettingsController@index')->name('settings');
+Route::post('/settings/username', 'SettingsController@username');
+Route::post('/settings/email', 'SettingsController@email');
