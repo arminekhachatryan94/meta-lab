@@ -27,7 +27,7 @@ Route::delete('/posts/{post}', 'PostController@delete'); // delete post
 
 // comments
 Route::post('/comments', 'CommentController@create');
-Route::delete('/comments/{comment}', 'CommentController@delete');
+Route::delete('/comments/{comment}', 'CommentController@delete'); // delete comment
 
 // settings
 Route::get('/settings', 'SettingsController@index')->name('settings');
@@ -35,3 +35,5 @@ Route::post('/settings/username', 'SettingsController@username');
 Route::post('/settings/email', 'SettingsController@email');
 
 // user roles
+Route::get('/roles', 'UserRolesController@index')->name('roles');
+Route::post('/roles/{id}', 'UserRolesController@store');
