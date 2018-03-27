@@ -12,7 +12,7 @@
     <div class="col">
         {{ $comment->body}}
     </div>
-    @if( $comment->user_id == auth()->id() )
+    @if( $comment->user_id == auth()->id() || Auth::user()->role == 'admin' )
         <div class="text-right">
             <form method="POST" action="/comments/{{$comment->id}}">
                 {{ method_field('DELETE') }}

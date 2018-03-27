@@ -15,6 +15,11 @@
             <div style="display:inline-block">
                 <li style="list-style-type: none;"><a class="text-black" href="/posts/create">Create</a></li>
             </div>
+            @if (Auth::user()->role == 'admin')
+            <div style="display:inline-block">
+                <li style="list-style-type: none;"><a class="text-black" href="/roles">User Roles</a></li>
+            </div>
+            @endif
             @endguest
         </div>
 

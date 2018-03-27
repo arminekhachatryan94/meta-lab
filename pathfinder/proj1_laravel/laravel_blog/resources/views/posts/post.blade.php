@@ -14,7 +14,7 @@
             {{ $post->body }}
         </div>
         <div style="padding-top:20px;">
-            @if( auth()->id() == $post->user_id )
+            @if( auth()->id() == $post->user_id || Auth::user()->role == 'admin' )
             <div class="text-right">
                 <form method="POST" action="/posts/{{$post->id}}">
                     {{ method_field('DELETE') }}
