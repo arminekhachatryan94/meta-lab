@@ -2,9 +2,9 @@
 
 @section('content')
 
-@if(Session::has('message'))
-    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('message') !!}</em></div>
-@endif
+@include ('layouts.successmsg')
+@include ('layouts.errormsg')
+
 
 <div class="container">
     <div class="row justify-content-center">

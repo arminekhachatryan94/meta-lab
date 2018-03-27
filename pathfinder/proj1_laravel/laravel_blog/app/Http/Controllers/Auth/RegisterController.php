@@ -75,6 +75,8 @@ class RegisterController extends Controller
             'role' => 'user'
         ]);
 
+    	session()->flash('message', 'Thank you for registering!');
+
         return $user;
     }
 }

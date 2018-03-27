@@ -47,7 +47,6 @@ class PostController extends Controller
             'body' => 'required'
         ]);
 
-
         Post::create([
             'title' => request('title'),
             'body' => request('body'),
@@ -55,15 +54,19 @@ class PostController extends Controller
             'created_at' => now()
         ]);
         
+        session()->flash('message', 'New post has been published.');
     	return redirect('/posts');
     }
 
     public function delete( $id ){
         $post = Post::find($id);
         if ( !$post ){
-            return back();
+            return back()->withErrors([
+    			'error' => "Couldn't delete post."
+    		]);
         } else {
             $post->delete();
+            session()->flash('message', 'Post was successfully deleted');
             return back();
         }
     }
