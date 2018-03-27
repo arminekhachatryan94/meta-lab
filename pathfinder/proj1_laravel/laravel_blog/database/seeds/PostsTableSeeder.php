@@ -16,7 +16,8 @@ class PostsTableSeeder extends Seeder
           'id' => 1,
           'user_id' => 1,
           'title' => 'New Post',
-          'body' => 'First post is about MetaBlog'
+          'body' => 'First post is about MetaBlog',
+          'created_at' => now()
         ]);
     }
 }

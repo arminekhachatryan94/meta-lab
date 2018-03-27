@@ -25,6 +25,7 @@ Route::post('/posts', 'PostController@store');
 Route::get('/posts/{post}', 'PostController@show');
 Route::delete('/posts/{post}', 'PostController@delete'); // delete post
 
+// settings
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/username', 'SettingsController@username');
 Route::post('/settings/email', 'SettingsController@email');

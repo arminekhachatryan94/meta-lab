@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
           'username' => 'armine',
           'password' => bcrypt('secret'),
           'role' => 'admin',
+          'created_at' => now(),
           'remember_token' => str_random(10),
         ]);
     }

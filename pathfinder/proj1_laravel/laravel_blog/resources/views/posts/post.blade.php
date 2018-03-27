@@ -23,12 +23,8 @@
                 </form>
             </div>
             @endif
-            <div class="text-left">
-                <b>Comments</b>
-            </div>
-            @foreach ($post->comments as $comment)
-                <div>{{ $comment->body}}</div>
-            @endforeach
+
+            @include ('comments.comments')
         </div>
     </div>
 </div>

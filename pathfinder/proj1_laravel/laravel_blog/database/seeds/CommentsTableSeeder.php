@@ -16,13 +16,15 @@ class CommentsTableSeeder extends Seeder
             'id' => 1,
             'post_id' => 1,
             'user_id' => 1,
-            'body' => 'Nice post!'
+            'body' => 'Nice post!',
+            'created_at' => now()
         ]);
         DB::table('comments')->insert([
             'id' => 2,
             'post_id' => 1,
             'user_id' => 1,
-            'body' => 'Love the post! Excited to use MetaBlog'
+            'body' => 'Love the post! Excited to use MetaBlog',
+            'created_at' => now()
           ]);
     }
 }
