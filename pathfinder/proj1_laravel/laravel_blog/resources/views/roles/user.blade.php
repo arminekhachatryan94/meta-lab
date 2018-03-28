@@ -1,5 +1,5 @@
 @if( Auth::user()->role == 'admin' )
-<div class="card" style="margin:0px 50px 20px 50px; padding:30px;">
+<div class="card margin-0-50-20-50 padding-30">
     <form method="POST" action="/roles/{{$user->id}}">
         {{ csrf_field() }}
         <div class="row col-md-12">
@@ -9,28 +9,28 @@
             |
             <div class="col-md-4">
                 @if ( $user->role == 'admin' )
-                    <div style="display:inline">
+                    <div class="inline">
                         <input type="radio" name="role" value="admin" checked>
                         Admin
                     </div>
-                    <div style="display:inline">
+                    <div class="inline">
                         <input type="radio" name="role" value="user">
                         User
                     </div>
                 @else
-                    <div style="display:inline">
+                    <div class="inline">
                         <input type="radio" name="role" value="admin">
                         Admin
                     </div>
-                    <div style="display:inline">
+                    <div class="inline">
                         <input type="radio" name="role" value="user" checked>
                         User
                     </div>
                 @endif
             </div>
         </div>
-        <div class="text-center" style="padding-top:30px;">
-            <input type="submit" value="Save" style="width:100px; height:40px;">
+        <div class="text-center padding-top-30">
+            <input type="submit" value="Save" class="w100-h40px">
         </div>
     </form>
 </div>

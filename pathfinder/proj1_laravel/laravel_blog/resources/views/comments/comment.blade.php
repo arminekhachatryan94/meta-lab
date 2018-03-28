@@ -1,4 +1,4 @@
-<div style="border-top: 1px solid black">
+<div class="border-top">
     <br>
     <div class="row col-md-12">
         <div class="col-md-4 text-left">

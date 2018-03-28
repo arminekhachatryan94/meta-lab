@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="padding:100px;">
-                <div class="h2 text-center" style="padding-bottom:50px;">{{ __('Register') }}</div>
+            <div class="card padding-100">
+                <div class="h2 text-center padding-bottom-50">{{ __('Register') }}</div>
 
                 <div>
                     <form method="POST" action="{{ route('register') }}">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0 text-center" style="padding-top:20px;">
+                        <div class="form-group row mb-0 text-center padding-top-20">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-white">
                                     {{ __('Register') }}

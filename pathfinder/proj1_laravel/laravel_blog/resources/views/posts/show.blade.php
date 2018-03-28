@@ -4,20 +4,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="display-4 text-center" style="font-family:cursive; padding:50px 100px 30px 100px;">Posts</div>
-                <div class="card" style="margin:0px 50px 20px 50px; padding:30px;">
+            <div class="display-4 text-center" class="title">Posts</div>
+                <div class="card" class="margin-0-50-20-50 padding-30">
                     <div class="text-center">
                         <a href="/posts/{{$post->id}}">
                             {{ $post->title }}
                         </a>
                     </div>
-                    <br style="border-bottom:1px dashed black; display:block;">
+                    <br class="border-bottom-dashed display-block">
                     <div>
                         <div class="text-right">{{ $post->user->username }}</div>
                         <div>
                             {{ $post->body }}
                         </div>
-                        <div style="padding-top:20px;">
+                        <div class="padding-top-20">
                             <b>Comments</b>
                             @foreach ($post->comments as $comment)
                                 <div>{{ $comment->body}}</div>

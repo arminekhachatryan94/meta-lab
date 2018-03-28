@@ -1,10 +1,10 @@
-<div class="card" style="margin:0px 50px 20px 50px; padding:30px;">
+<div class="card margin-0-50-20-50 padding-30">
     <div class="text-center">
         <a href="/posts/{{$post->id}}">
             {{ $post->title }}
         </a>
     </div>
-    <br style="border-bottom:1px dashed black; display:block;">
+    <br class="display-block border-bottom-dashed">
     <div>
         <div class="text-right">{{ $post->user->username }}</div>
         <div class="text-right">
@@ -13,7 +13,7 @@
         <div>
             {{ $post->body }}
         </div>
-        <div style="padding-top:20px;">
+        <div class="padding-top-20">
             @if( auth()->id() == $post->user_id || Auth::user()->role == 'admin' )
             <div class="text-right">
                 <form method="POST" action="/posts/{{$post->id}}">

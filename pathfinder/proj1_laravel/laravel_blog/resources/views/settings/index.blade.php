@@ -8,8 +8,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="display-4 text-center" style="font-family:cursive; padding:50px 100px 30px 100px;">Settings</div>
-            <div class="card" style="padding:50px;">
+            <div class="display-4 text-center title">Settings</div>
+            <div class="card padding-50">
                 <div class="form-group row">
                     <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
                     <div class="col-md-6">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row mb-0 text-center" style="display:inline; padding-top:20px;">
+                    <div class="form-group row mb-0 text-center inline padding-top-20">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-white">
                                 Save Username
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row mb-0 text-center" style="display:inline; padding-top:20px;">
+                    <div class="form-group row mb-0 text-center inline padding-top-20">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" name="put_email" class="btn btn-white">
                                 Save Email

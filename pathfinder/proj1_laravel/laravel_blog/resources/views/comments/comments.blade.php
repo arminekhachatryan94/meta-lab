@@ -3,7 +3,7 @@
     <b>Comments</b>
 </div>
 
-<div style="height:200px; width:100%; overflow:scroll; overflow-y: scroll;">
+<div class="comments-scrollbar">
 @foreach ($post->comments as $comment)
 
     @include ('comments.comment')

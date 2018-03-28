@@ -1,4 +1,4 @@
-<div>
+<div class="padding-top-20">
     <div>
         New Comment
     </div>
@@ -7,9 +7,9 @@
         {{ csrf_field() }}
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <div>
-            <textarea name="body" type="text" style="width:100%; height:100px;"></textarea>
+            <textarea name="body" type="text" class="w100-h100px"></textarea>
         </div>
-        <div style="padding-top:10px;">
+        <div class="padding-top-10">
             <button type="submit" name="submit" class="btn-white">Publish Comment</button>
         </div>
     </form>

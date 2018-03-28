@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="padding:100px;">
-                <div class="h2 text-center" style="padding-bottom:50px;">{{ __('Login') }}</div>
+            <div class="card padding-100">
+                <div class="h2 text-center padding-bottom-50">{{ __('Login') }}</div>
 
                 <div>
                     <form method="POST" action="{{ route('login') }}">

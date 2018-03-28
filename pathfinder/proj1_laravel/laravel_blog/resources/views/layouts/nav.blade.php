@@ -6,18 +6,18 @@
             </a>
             @guest
             @else
-            <div style="display:inline-block">
-                <li style="list-style-type: none;"><a class="text-black" href="/posts">Posts</a></li>
+            <div class="display-inline-block">
+                <li class="list-style-type-none"><a class="text-black" href="/posts">Posts</a></li>
             </div>
-            <div style="display:inline-block">
-                <li style="list-style-type: none;"><a class="text-black" href="/myposts">My Posts</a></li>
+            <div class="display-inline-block">
+                <li class="list-style-type-none"><a class="text-black" href="/myposts">My Posts</a></li>
             </div>
-            <div style="display:inline-block">
-                <li style="list-style-type: none;"><a class="text-black" href="/posts/create">Create</a></li>
+            <div class="display-inline-block">
+                <li class="list-style-type-none"><a class="text-black" href="/posts/create">Create</a></li>
             </div>
             @if (Auth::user()->role == 'admin')
-            <div style="display:inline-block">
-                <li style="list-style-type: none;"><a class="text-black" href="/roles">User Roles</a></li>
+            <div class="display-inline-block">
+                <li class="list-style-type-none"><a class="text-black" href="/roles">User Roles</a></li>
             </div>
             @endif
             @endguest
@@ -45,7 +45,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="display-none">
                                         @csrf
                                     </form>
                                 </div>
