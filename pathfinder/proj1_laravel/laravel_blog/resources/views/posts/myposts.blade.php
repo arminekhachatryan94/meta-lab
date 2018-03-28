@@ -5,16 +5,9 @@
 @include ('layouts.successmsg')
 @include ('layouts.errormsg')
 
-
 <script>
     var posts = [];
 </script>
-
-@foreach ( $posts as $post )
-    <script>
-        posts.push(({{ $post->id }}));
-    </script>
-@endforeach
 
 <div class="container">
     <div class="row justify-content-center">
@@ -22,6 +15,9 @@
             <div class="display-4 text-center title">My Posts</div>
 
             @foreach ($posts as $post)
+                <script>
+                    posts.push(({{ $post->id }}));
+                </script>
                 @include ('posts.post')
             @endforeach
         </div>

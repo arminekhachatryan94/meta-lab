@@ -24,18 +24,20 @@ const app = new Vue({
 
 /* meta-blog js code */
 $(document).ready(function(){
-    
+
     /* show/hide comments */
-    for (let i = 1; i <= count; i++) {
-        $('#post' + i).click( function() {
-            var display = $('#comments' + i).css('display');
-            if( display == "none" ){
-                $('#comments' + i).css('display', 'inline-block');
-            }
-            else {
-                $('#comments' + i).css('display', 'none');
-            }
-        });
+    if( typeof(posts) !== 'undefined'){
+        for( let i = 0; i < posts.length; i++ ){
+            $('#post' + posts[i]).click( function() {
+                var display = $('#comments' + posts[i]).css('display');
+                if( display == "none" ){
+                    $('#comments' + Number(posts[i])).css('display', 'inline-block');
+                }
+                else {
+                    $('#comments' + Number(posts[i])).css('display', 'none');
+                }
+            });
+        }
     }
 
 });

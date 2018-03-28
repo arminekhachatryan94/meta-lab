@@ -7,7 +7,7 @@
 
 
 <script>
-    var count = {{ count($posts) }};
+    var posts = [];
 </script>
 
 <div class="container">
@@ -16,6 +16,9 @@
             <div class="display-4 text-center title">My Posts</div>
 
             @foreach ($posts as $post)
+                <script>
+                    posts.push(({{ $post->id }}));
+                </script>
                 @include ('posts.post')
             @endforeach
         </div>

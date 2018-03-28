@@ -13890,22 +13890,23 @@ var app = new Vue({
 
 /* meta-blog js code */
 $(document).ready(function () {
-    var _loop = function _loop(i) {
-        console.log(posts[i]);
-
-        $('#post' + posts[i]).click(function () {
-            var display = $('#comments' + posts[i]).css('display');
-            if (display == "none") {
-                $('#comments' + Number(posts[i])).css('display', 'inline-block');
-            } else {
-                $('#comments' + Number(posts[i])).css('display', 'none');
-            }
-        });
-    };
 
     /* show/hide comments */
-    for (var i = 0; i < posts.length; i++) {
-        _loop(i);
+    if (typeof posts !== 'undefined') {
+        var _loop = function _loop(i) {
+            $('#post' + posts[i]).click(function () {
+                var display = $('#comments' + posts[i]).css('display');
+                if (display == "none") {
+                    $('#comments' + Number(posts[i])).css('display', 'inline-block');
+                } else {
+                    $('#comments' + Number(posts[i])).css('display', 'none');
+                }
+            });
+        };
+
+        for (var i = 0; i < posts.length; i++) {
+            _loop(i);
+        }
     }
 });
 
