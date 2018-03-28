@@ -7,8 +7,14 @@
 
 
 <script>
-    var count = {{ count($posts) }};
+    var posts = [];
 </script>
+
+@foreach ( $posts as $post )
+    <script>
+        posts.push(({{ $post->id }}));
+    </script>
+@endforeach
 
 <div class="container">
     <div class="row justify-content-center">
