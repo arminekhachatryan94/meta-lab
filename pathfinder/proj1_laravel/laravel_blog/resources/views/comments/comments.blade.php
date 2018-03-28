@@ -1,15 +1,23 @@
 
 <div class="text-left">
-    <b>Comments</b>
+    <a href="#" id="post{{$post->id}}">
+        <b>Comments</b>
+    </a>
 </div>
 
-<div class="comments-scrollbar">
-@foreach ($post->comments as $comment)
+@if ( count($post->comments) > 0 )
+<div id="comments{{$post->id}}" class="comments-scrollbar w100-h200px display-none">
+    @foreach ($post->comments as $comment)
+    
+        @include ('comments.comment')
 
-    @include ('comments.comment')
-
-@endforeach
+    @endforeach
 </div>
+@else
+<div id="comments{{$post->id}}" class="w100-h10px padding-top-10 display-none">
+    No Comments
+</div>
+@endif
 
 <div>
     @include ('comments.create')

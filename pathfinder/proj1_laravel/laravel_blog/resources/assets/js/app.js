@@ -20,3 +20,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+
+/* meta-blog js code */
+$(document).ready(function(){
+    
+    /* show/hide comments */
+    for (let i = 1; i <= count; i++) {
+        $('#post' + i).click( function() {
+            var display = $('#comments' + i).css('display');
+            if( display == "none" ){
+                $('#comments' + i).css('display', 'inline-block');
+            }
+            else {
+                $('#comments' + i).css('display', 'none');
+            }
+        });
+    }
+
+});

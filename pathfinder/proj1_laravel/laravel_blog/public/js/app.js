@@ -13885,7 +13885,26 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+/* meta-blog js code */
+$(document).ready(function () {
+    var _loop = function _loop(i) {
+        $('#post' + i).click(function () {
+            var display = $('#comments' + i).css('display');
+            if (display == "none") {
+                $('#comments' + i).css('display', 'inline-block');
+            } else {
+                $('#comments' + i).css('display', 'none');
+            }
+        });
+    };
+
+    /* show/hide comments */
+    for (var i = 1; i <= count; i++) {
+        _loop(i);
+    }
 });
 
 /***/ }),
