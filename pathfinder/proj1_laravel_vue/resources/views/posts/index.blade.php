@@ -5,21 +5,18 @@
 @include ('layouts.successmsg')
 @include ('layouts.errormsg')
 
-<script>
-    var count = {{ count($posts) }};
-</script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="display-4 text-center title">Posts</div>
-                
-            @foreach ($posts as $post)
-                <script>
-                    posts.push(({{ $post->id }}));
-                </script>
-                @include ('posts.post')
-            @endforeach
+            <div class="display-4 text-center title">All Posts</div>
+            <post v-for="post in posts"
+                :id="post.id"
+                :user_id="post.user_id"
+                :title="post.title"
+                :body="post.body"
+                :created_at="post.created_at"
+                :updated_at="post.updated_at"
+                ></post>
         </div>
     </div>
 </div>

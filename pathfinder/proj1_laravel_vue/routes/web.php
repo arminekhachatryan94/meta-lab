@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // posts
+Route::get('/getposts', 'PostController@getPosts');
 Route::get('/posts', 'PostController@index')->name('posts');
 Route::get('/myposts', 'PostController@myposts')->name('myposts');
 Route::get('/posts/create', 'PostController@create');

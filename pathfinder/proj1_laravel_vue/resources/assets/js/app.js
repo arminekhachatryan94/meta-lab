@@ -15,18 +15,36 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('posts', require('./components/posts/Posts.vue'));
+// Vue.component('navbar', require('./components/Navbar.vue'));
+
+import Post from './components/posts/Post';
+import axios from 'axios';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        Post
+    },
+    data: {
+        posts: []
+    },
+    created() {
+        axios.get('/getposts').then(response => {
+            this.posts = response.data;
+        }).catch(e => {
+            console.log(e)
+        });
+    }
 });
 
 
 /* meta-blog js code */
-$(document).ready(function(){
+// $(document).ready(function(){
 
     /* show/hide comments */
-    if( typeof(posts) !== 'undefined'){
+    /*if( typeof(posts) !== 'undefined'){
         for( let i = 0; i < posts.length; i++ ){
             $('#post' + posts[i]).click( function() {
                 var display = $('#comments' + posts[i]).css('display');
@@ -40,4 +58,4 @@ $(document).ready(function(){
         }
     }
 
-});
+}); */

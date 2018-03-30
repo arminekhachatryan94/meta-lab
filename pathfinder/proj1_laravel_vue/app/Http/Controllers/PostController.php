@@ -23,9 +23,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function getPosts(){
         $posts = Post::all()->sortByDesc("created_at");
-        return view('posts.index', compact('posts'));
+        return $posts;
+    }
+
+    public function index(){
+        return view('posts.index');
     }
 
     public function myposts(){
