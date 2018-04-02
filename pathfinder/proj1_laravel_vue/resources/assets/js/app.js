@@ -19,13 +19,16 @@ window.Vue = require('vue');
 // Vue.component('posts', require('./components/posts/Posts.vue'));
 // Vue.component('navbar', require('./components/Navbar.vue'));
 
+Vue.use(require('vue-moment'));
+
 import Post from './components/posts/Post';
+import Comment from './components/comment/Comment';
 import axios from 'axios';
 
 const app = new Vue({
     el: '#app',
     components: {
-        Post
+        Post, Comment
     },
     data: {
         posts: []

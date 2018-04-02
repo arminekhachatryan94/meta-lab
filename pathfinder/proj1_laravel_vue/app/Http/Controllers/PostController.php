@@ -25,6 +25,10 @@ class PostController extends Controller
      */
     public function getPosts(){
         $posts = Post::all()->sortByDesc("created_at");
+        foreach ( $posts as $post){
+            $post->comments;
+            $post->user;
+        }
         return $posts;
     }
 
