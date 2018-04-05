@@ -24,11 +24,16 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getPosts(){
-        $posts = Post::all()->sortByDesc("created_at");
+        $posts = Post::latest()->get();
         foreach ( $posts as $post){
             $post->comments;
             $post->user;
+
+            foreach( $post->comments as $comment ){
+                $comment->user;
+            }
         }
+        
         return $posts;
     }
 
@@ -37,7 +42,7 @@ class PostController extends Controller
     }
 
     public function myposts(){
-        $posts = Post::all()->where('user_id', auth()->id())->sortByDesc("created_at");
+        $posts = Post::latest()->get()->where('user_id', auth()->id())->sortByDesc("created_at");
         return view('posts.myposts', compact('posts'));
     }
 

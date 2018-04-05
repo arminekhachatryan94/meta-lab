@@ -22,13 +22,12 @@ window.Vue = require('vue');
 Vue.use(require('vue-moment'));
 
 import Post from './components/posts/Post';
-import Comment from './components/comment/Comment';
 import axios from 'axios';
 
 const app = new Vue({
     el: '#app',
     components: {
-        Post, Comment
+        Post
     },
     data: {
         posts: []

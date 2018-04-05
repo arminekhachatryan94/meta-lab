@@ -3,7 +3,7 @@
     <br>
     <div class="row col-md-12">
         <div class="col-md-4 text-left">
-            <!--{{ user.username }}-->
+            {{ user.username }}
         </div>
         <div class="col-md-8 text-right">
             <i>{{ created_at | moment("MMMM D, YYYY [at] h:mm a") }}</i>
@@ -29,9 +29,13 @@ export default{
         body: String,
         created_at: String,
         updated_at: String,
+        user: User
     }
 }
 </script>
 
 <style>
+.border-top {
+    border-top: 1px solid black;
+}
 </style>
